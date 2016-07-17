@@ -8,6 +8,23 @@ var db = 'mongodb://localhost/example';
 
 mongoose.connect(db);
 
+app.get('/',function(req,res) {
+	res.send('happy to be here');
+})
+
+app.get('/books',function(req,res) {
+	console.log('getting all books');
+	Book.find({}).exec(function(err,books) {
+		if(err) {
+			res.send(err.message);
+		}
+		else {
+			console.log(books);
+			res.json(books);
+		}
+	});
+})
+
 var port = 8090;
 
 app.listen(port, function() {
