@@ -1,5 +1,6 @@
 var express = require('express');
 var app = express();
+var path = require('path');
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 var Book = require('./Book.model');
@@ -8,13 +9,15 @@ var db = 'mongodb://localhost/example';
 
 mongoose.connect(db);
 
+app.use(express.static(path.join(__dirname, 'public')));
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
 	extended: true
 }));
 
 app.get('/',function(req,res) {
-	res.send('happy to be here');
+	res.render('index');
 })
 
 app.get('/books',function(req,res) {
