@@ -10,6 +10,7 @@ var db = 'mongodb://localhost/example';
 mongoose.connect(db);
 
 app.use(express.static(path.join(__dirname, 'public')));
+app.use('/bower_components',  express.static(__dirname + '/bower_components'));
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
@@ -92,7 +93,7 @@ app.put('book/:id',function(req, res) {
 		});
 })
 
-app.delete('/book/:id', function() {
+app.delete('/book/:id', function(req, res) {
 	Book.findOneAndRemove({
 		_id:req.params.id
 	}, function(err, book) {

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="myApp">
 	<head>
 		<title>Mongoose App</title>
 		<style>
@@ -9,13 +9,20 @@
 		</style>
 	</head>
 	<body>
-		<form action="http://localhost:8090/book/" method="post">
-			Title: <input type="text" name="title"> <br>
-			Author: <input type="text" name="author"> <br>
-			Category: <input type="text" name="category"> <br>
-			<input type="submit" value="Submit" id="post">
-		</form>
+		<div class="container" ng-controller="AppCtrl">
+			<form action="http://localhost:8090/book/" method="post">
+				Title: <input type="text" name="title"> <br>
+				Author: <input type="text" name="author"> <br>
+				Category: <input type="text" name="category"> <br>
+				<input type="submit" value="Submit" id="post">
+			</form>
+			<form>
+				<input type="text" name="id" ng-model="id"></input>
+				<input type="submit" id="delete" ng-click="remove()"></input>
+			</form>
+		</div>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-        <script src="bower_components/angular/angular.js"></script>
+		<script src="bower_components/angular/angular.js"></script>
+		<script src="controllers/controller.js"></script>
 	</body>
 </html>
