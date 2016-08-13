@@ -107,7 +107,7 @@ app.delete('/book/:id', function(req, res) {
 	});
 })
 
-var port = 8090;
+var port = Number(process.env.PORT || 8090);
 
 app.listen(port, function() {
 	console.log('app listening on ' + port);
