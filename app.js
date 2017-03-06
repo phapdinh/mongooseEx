@@ -1,11 +1,13 @@
-var express = require('express');
-var app = express();
-var path = require('path');
-var bodyParser = require('body-parser');
-var mongoose = require('mongoose');
-var Book = require('./Book.model');
+'use strict';
 
-var db = 'mongodb://localhost/example';
+var express = require('express'),
+    app = express(),
+    path = require('path'),
+    bodyParser = require('body-parser'),
+    mongoose = require('mongoose'),
+    Book = require('./Book.model'),
+    db = 'mongodb://localhost/example',
+    port = Number(process.env.PORT || 8090);
 
 mongoose.connect(db);
 
@@ -19,7 +21,7 @@ app.use(bodyParser.urlencoded({
 
 app.get('/',function(req,res) {
 	res.render('index');
-})
+});
 
 app.get('/books',function(req,res) {
 	console.log('getting all books');
@@ -32,7 +34,7 @@ app.get('/books',function(req,res) {
 			res.json(books);
 		}
 	});
-})
+});
 
 app.get('/books/:id', function(req,res) {
 	console.log('getting one book');
@@ -47,7 +49,7 @@ app.get('/books/:id', function(req,res) {
 			res.json(book);
 		}
 	})
-})
+});
 
 app.post('/book',function(req, res) {
 	var newBook = new Book();
@@ -65,7 +67,7 @@ app.post('/book',function(req, res) {
 			res.send(book);
 		}
 	});
-})
+});
 
 app.post('/book2', function(req, res) {
 	Book.create(req.body, function(err, book) {
@@ -76,7 +78,7 @@ app.post('/book2', function(req, res) {
 			res.send(book);
 		}
 	});
-})
+});
 
 app.put('book/:id',function(req, res) {
 	Book.findOneAndUpdate({
@@ -91,7 +93,7 @@ app.put('book/:id',function(req, res) {
 				res.status(204);
 			}
 		});
-})
+});
 
 app.delete('/book/:id', function(req, res) {
 	Book.findOneAndRemove({
@@ -105,9 +107,7 @@ app.delete('/book/:id', function(req, res) {
 			res.status(204);
 		}
 	});
-})
-
-var port = Number(process.env.PORT || 8090);
+});
 
 app.listen(port, function() {
 	console.log('app listening on ' + port);
