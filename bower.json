@@ -1,0 +1,21 @@
+{
+  "name": "mongooseex",
+  "description": "Udemy mongoose tutorial",
+  "main": "app.js",
+  "authors": [
+    "Phap"
+  ],
+  "license": "ISC",
+  "keywords": [
+    "mongoose"
+  ],
+  "homepage": "https://github.com/phapdinh/mongooseEx",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
