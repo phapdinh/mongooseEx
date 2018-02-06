@@ -88,7 +88,7 @@ app.put('book/:id',function(req, res) {
 		{upsert: true},
 		function(err, newBook) {
 			if(err) {
-				console.log(err.message);
+				console.log(err.message, newBook);
 			} else {
 				res.status(204);
 			}
